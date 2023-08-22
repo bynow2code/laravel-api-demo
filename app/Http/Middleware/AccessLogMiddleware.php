@@ -63,7 +63,6 @@ class AccessLogMiddleware
             $accessLogModel->setRawAttributes($log, true);
             $accessLogModel->save();
         } catch (\Throwable $e) {
-            var_dump($e->getMessage());
             Log::debug('saveLog err');
         }
     }
