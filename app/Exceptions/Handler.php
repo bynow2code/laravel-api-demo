@@ -2,9 +2,8 @@
 
 namespace App\Exceptions;
 
-use App\Responses\ApiResponse;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -31,12 +30,52 @@ class Handler extends ExceptionHandler
         });
     }
 
+    /**
+     * Rendering Error
+     * @param $request
+     * @param Throwable $e
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function render($request, Throwable $e)
     {
+        //return parent::render($request,$e);
+
+        //http 404 exception
         if ($e instanceof NotFoundHttpException) {
-            return ApiResponse::error('Resource not found',null,404);
+            $statusCode = 404;
+            $responseData = [
+                'code' => $statusCode,
+                'message' => "Not Found",
+            ];
+        } elseif ($e instanceof ValidationException) {
+            $statusCode = 400;
+            $responseData = [
+                'code' => $statusCode,
+                'message' => 'Invalid parameter',
+            ];
         } else {
-            return ApiResponse::error();
+            //other exception
+            $statusCode = 500;
+            $responseData = [
+                'code' => $statusCode,
+                'message' => "Internal Server Error",
+            ];
         }
+
+        //trace id
+        $responseData['X-Trace-Id'] = $request->header('X-Trace-Id');
+
+        //debug info
+        if (config('app.debug')) {
+            //real errcode
+            $responseData['errcode'] = $e->getCode();
+            //real errmessage
+            $responseData['errmsg'] = $e->getMessage();
+            $responseData['file'] = $e->getFile();
+            $responseData['line'] = $e->getLine();
+            $responseData['trace'] = $e->getTrace();
+        }
+
+        return response()->json($responseData, $statusCode);
     }
 }
