@@ -55,7 +55,7 @@ class AccessLogMiddleware
     {
         try {
             $accessLogModel = new AccessLog();
-            $newTableName = Str::snake(Str::pluralStudly(class_basename(AccessLog::class))) . '_' . Carbon::today()->toDateString();
+            $newTableName = Str::snake(Str::pluralStudly(class_basename(AccessLog::class))) . '_' . Carbon::today()->format("Y_m_d");
             $accessLogModel->setTable($newTableName);
             if (!Schema::hasTable($newTableName)) {
                 $this->createTable($newTableName);
