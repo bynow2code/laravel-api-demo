@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
                 ];
             case 'api/user/search':
                 return [
-                    's' => ['required','string','min:1','max:10000','regex:/^[()\[\]{}]+$/'],
+                    's' => ['required', 'string', 'min:1', 'max:10000', 'regex:/^[()\[\]{}]+$/'],
                 ];
             default:
                 return [];
