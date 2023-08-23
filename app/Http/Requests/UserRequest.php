@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -26,6 +27,10 @@ class UserRequest extends FormRequest
             case 'api/user/info':
                 return [
                     'uid' => 'required|int',
+                ];
+            case 'api/user/search':
+                return [
+                    's' => ['required','string','min:1','max:10000','regex:/^[()\[\]{}]+$/'],
                 ];
             default:
                 return [];
