@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Exception;
-use JetBrains\PhpStorm\Pure;
 use Throwable;
 
 class BusinessException extends Exception
