@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
         }
 
         //trace id
-        $responseData['X-Trace-Id'] = $request->header('X-Trace-Id');
+        $responseData['trace_id'] = $request->header('X-Trace-Id');
 
         //debug info
         if (config('app.debug')) {

@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Exceptions\BusinessException;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class ApiBaseController extends Controller
 {
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+
     /**
      * success return
      * @param $data
@@ -18,6 +27,7 @@ class ApiBaseController extends Controller
         return response()->json([
             'code' => 200,
             'message' => $message,
+            'trace_id' => $this->request->header('X-Trace-Id'),
             'data' => $data,
         ]);
     }
