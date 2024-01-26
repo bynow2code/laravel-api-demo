@@ -15,4 +15,4 @@ cd ./laravel-test
 ./vendor/bin/sail up
 ````
 ## Thank you
-如果有更优雅的实现，可以给我也指一条道吗？
+如果有更优雅的实现，可以给我也指一条路吗？
