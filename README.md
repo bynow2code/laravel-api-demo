@@ -1,4 +1,4 @@
-.## Introduction
+## Introduction
 laravel 10.x API demo
 
 ## Behavior
