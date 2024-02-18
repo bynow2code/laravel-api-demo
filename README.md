@@ -15,4 +15,39 @@ cd ./laravel-test
 ./vendor/bin/sail up
 ````
 ## Thank you
-如果有更优雅的实现，可以给我也指一条路吗？
+如果有更优雅的实现，可以给我指条路吗？
+
+### Yii 框架内的一种实现
+````
+config/web.php
+
+'components' => [
+    'response' => [
+        'class' => 'yii\web\Response',
+        'format' => yii\web\Response::FORMAT_JSON,
+        'on beforeSend' => function ($event) {
+            /**
+             * @var $response \yii\web\Response
+             */
+            $response = $event->sender;
+            if ($response->data !== null) {
+                $response->data = [
+                    'errorCode' => (string)$response->exitStatus,
+                    'errorInfo' => $response->statusText,
+                    'data' => $response->data,
+                ];
+                $response->statusCode = 200;
+            }
+        },
+    ],
+  ],
+
+
+modules/api/controllers/TestController.php
+
+public function actionTest()
+{
+    return ['token' => '1234567'];
+}
+
+````
