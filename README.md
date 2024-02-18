@@ -20,7 +20,6 @@ cd ./laravel-test
 ### Yii 框架内的一种实现
 ````
 config/web.php
-
 'components' => [
     'response' => [
         'class' => 'yii\web\Response',
@@ -44,7 +43,6 @@ config/web.php
 
 
 modules/api/controllers/TestController.php
-
 public function actionTest()
 {
     return ['token' => '1234567'];
