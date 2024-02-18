@@ -8,7 +8,7 @@ laravel 10.x API demo
 - [x] 调试模式，返回更多有用的信息
 - [x] 请求过程数据记录并分表储存示例：http path,http method,request body,response data.
 
-## needs improvement
+## Needs improvement
 - [ ] API version. reference: [YII API versioning](https://markdown.com.cn)
 
 ## Start
