@@ -1,7 +1,7 @@
 ## Introduction
 laravel 10.x API demo
 
-## Behavior
+## Features
 - [x] 封装 Api json 返回格式
 - [x] 异常统一处理
 - [x] 加入全局 trace id
