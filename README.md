@@ -9,7 +9,7 @@ laravel 10.x API demo
 - [x] 请求过程数据记录并分表储存示例：http path,http method,request body,response data.
 
 ## Needs improvement
-- [ ] API version. reference: [YII API versioning]([https://markdown.com.cn](https://www.yiiframework.com/doc/guide/2.0/zh-cn/rest-versioning))
+- [ ] API version. reference: [YII API versioning](https://www.yiiframework.com/doc/guide/2.0/zh-cn/rest-versioning)
 
 ## Start
 ````
